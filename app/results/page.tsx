@@ -424,7 +424,10 @@ const handleDownloadPDF = async () => {
                   {phoneData.feature_summary?.length > 0 && (
                     <div
                       className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                      ref={(el) => (chartRefs.current[`${phoneData.phone}-feature`] = el)}
+                      ref={(el) => {
+                          chartRefs.current[`${phoneData.phone}-feature`] = el;
+                        }}
+
                       onClick={() =>
                         setModalChart(
                           <BarChart width={800} height={400} data={aggregateByKey(phoneData.feature_summary, 'feature')}>
