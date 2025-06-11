@@ -283,7 +283,7 @@ const handleDownloadPDF = async () => {
     const csvRows: string[] = [];
     filteredData.forEach((phoneData) => {
       csvRows.push(`### Analysis for ${phoneData.phone} ###`);
-      const sections: { name: string; data: any[] }[] = [
+      const sections: { name: string; data: unknown[] }[] = [
         { name: 'Feature Summary', data: phoneData.feature_summary },
         { name: 'Overall Summary', data: phoneData.overall_summary },
         { name: 'Sentiment by Brand', data: phoneData.sentiment_by_brand },
