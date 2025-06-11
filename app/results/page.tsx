@@ -459,7 +459,10 @@ const handleDownloadPDF = async () => {
                   {phoneData.overall_summary?.length > 0 && (
                     <div
                       className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                      ref={(el) => (chartRefs.current[`${phoneData.phone}-monthly`] = el)}
+                      ref={(el) => {
+                            chartRefs.current[`${phoneData.phone}-monthly`] = el;
+                          }}
+
                       onClick={() =>
                         setModalChart(
                           (() => {
