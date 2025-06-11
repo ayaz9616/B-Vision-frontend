@@ -306,7 +306,7 @@ const handleDownloadPDF = async () => {
       sections.forEach((section) => {
         if (!section.data) return;
         csvRows.push(`## ${section.name} ##`);
-        const headers = section.data.length > 0 ? Object.keys(section.data[0]) : [];
+        const headers = section.data.length > 0 ? Object.keys(section.data[0] as object) : [];
         if (headers.length === 0) return;
         csvRows.push(headers.map(h => `"${h.replace(/"/g, '""')}"`).join(','));
         section.data.forEach((item) => {
