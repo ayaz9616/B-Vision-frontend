@@ -237,11 +237,20 @@ const handleDownloadPDF = async () => {
     const element = reportRef.current;
 
     // Clean shadows/outlines/borders
+    // element.querySelectorAll("*").forEach((el) => {
+    //   el.style.boxShadow = 'none';
+    //   el.style.outline = 'none';
+    //   el.style.border = 'none';
+    // });
+
     element.querySelectorAll("*").forEach((el) => {
-      el.style.boxShadow = 'none';
-      el.style.outline = 'none';
-      el.style.border = 'none';
+      if (el instanceof HTMLElement) {
+        el.style.boxShadow = 'none';
+        el.style.outline = 'none';
+        el.style.border = 'none';
+      }
     });
+
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
