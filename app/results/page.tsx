@@ -983,67 +983,73 @@ function DebugTable({ data }: { data: unknown }) {
           </tr>
         </thead>
         <tbody>
-          {data &&
-            typeof data === 'object' &&
-            data !== null &&
-            Object.entries(data as Record<string, unknown>).map(([key, value]) => (
-              <tr key={key} className="border-b border-gray-700 align-top">
-                <td className="px-2 py-1 font-semibold text-blue-300 align-top">{key}</td>
-                <td className="px-2 py-1 align-top whitespace-pre-wrap break-all text-white">
-                  {Array.isArray(value) ? (
-                    <div className="overflow-x-auto max-h-40">
-                      <table className="min-w-full border border-gray-700 text-xs">
-                        <thead className="bg-gray-900">
-                          <tr>
-                            {value.length > 0 && typeof value[0] === 'object' ? (
-                              Object.keys(value[0]).map((col) => (
-                                <th key={col} className="px-1 py-0.5 border-b border-gray-700 text-left">
-                                  {col}
-                                </th>
-                              ))
-                            ) : (
-                              <th className="px-1 py-0.5 border-b border-gray-700 text-left">Value</th>
-                            )}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {value.length > 0 && typeof value[0] === 'object'
-                            ? value.map((row, i) => (
-                                <tr key={i} className="border-b border-gray-800">
-                                  {Object.values(row).map((cell, j) => (
-                                    <td key={j} className="px-1 py-0.5 align-top border-b border-gray-800 text-white">
-                                      {String(cell)}
-                                    </td>
+          <tbody>
+            {(() => {
+              if (data && typeof data === 'object' && data !== null) {
+                return Object.entries(data as Record<string, unknown>).map(([key, value]) => (
+                  <tr key={key} className="border-b border-gray-700 align-top">
+                    <td className="px-2 py-1 font-semibold text-blue-300 align-top">{key}</td>
+                    <td className="px-2 py-1 align-top whitespace-pre-wrap break-all text-white">
+                      {Array.isArray(value) ? (
+                        <div className="overflow-x-auto max-h-40">
+                          <table className="min-w-full border border-gray-700 text-xs">
+                            <thead className="bg-gray-900">
+                              <tr>
+                                {value.length > 0 && typeof value[0] === 'object' ? (
+                                  Object.keys(value[0] as Record<string, unknown>).map((col) => (
+                                    <th key={col} className="px-1 py-0.5 border-b border-gray-700 text-left">
+                                      {col}
+                                    </th>
+                                  ))
+                                ) : (
+                                  <th className="px-1 py-0.5 border-b border-gray-700 text-left">Value</th>
+                                )}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {value.length > 0 && typeof value[0] === 'object'
+                                ? value.map((row, i) => (
+                                    <tr key={i} className="border-b border-gray-800">
+                                      {Object.values(row as Record<string, unknown>).map((cell, j) => (
+                                        <td key={j} className="px-1 py-0.5 align-top border-b border-gray-800 text-white">
+                                          {String(cell)}
+                                        </td>
+                                      ))}
+                                    </tr>
+                                  ))
+                                : value.map((v, i) => (
+                                    <tr key={i} className="border-b border-gray-800">
+                                      <td className="px-1 py-0.5 align-top border-b border-gray-800 text-white">{String(v)}</td>
+                                    </tr>
                                   ))}
-                                </tr>
-                              ))
-                            : value.map((v, i) => (
-                                <tr key={i} className="border-b border-gray-800">
-                                  <td className="px-1 py-0.5 align-top border-b border-gray-800 text-white">{String(v)}</td>
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : typeof value === 'object' && value !== null ? (
+                        <div className="overflow-x-auto max-h-40">
+                          <table className="min-w-full border border-gray-700 text-xs">
+                            <tbody>
+                              {Object.entries(value as Record<string, unknown>).map(([k, v]) => (
+                                <tr key={k} className="border-b border-gray-800">
+                                  <td className="px-1 py-0.5 font-semibold text-blue-300 align-top">{k}</td>
+                                  <td className="px-1 py-0.5 align-top text-white">{String(v)}</td>
                                 </tr>
                               ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : typeof value === 'object' && value !== null ? (
-                    <div className="overflow-x-auto max-h-40">
-                      <table className="min-w-full border border-gray-700 text-xs">
-                        <tbody>
-                          {Object.entries(value as Record<string, unknown>).map(([k, v]) => (
-                            <tr key={k} className="border-b border-gray-800">
-                              <td className="px-1 py-0.5 font-semibold text-blue-300 align-top">{k}</td>
-                              <td className="px-1 py-0.5 align-top text-white">{String(v)}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    String(value)
-                  )}
-                </td>
-              </tr>
-            ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : (
+                        String(value)
+                      )}
+                    </td>
+                  </tr>
+                ));
+              } else {
+                return null;
+              }
+            })()}
+          </tbody>
+
         </tbody>
       </table>
     </div>
