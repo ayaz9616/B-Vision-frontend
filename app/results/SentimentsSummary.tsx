@@ -82,7 +82,7 @@ export default function DebugTableModal({ data, buttonLabel = "Show Sentiment An
               >
                 <Dialog.Panel className="w-full max-w-5xl transform overflow-hidden rounded-2xl bg-[#181b23] text-white p-6 shadow-xl transition-all border border-[#23243a]">
                   <div className="flex justify-between items-center mb-4">
-                    <Dialog.Title className="text-lg font-semibold">Processed Debug Data</Dialog.Title>
+                    <Dialog.Title className="text-lg font-semibold">Processed Sentiment Analysis</Dialog.Title>
                     <div className="flex gap-2">
                       <button
                         className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
