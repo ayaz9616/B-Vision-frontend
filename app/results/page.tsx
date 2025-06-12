@@ -599,7 +599,10 @@ const handleDownloadPDF = async () => {
                   {phoneData.sentiment_by_brand?.length > 0 && (
                     <div
                       className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                      ref={(el) => (chartRefs.current[`${phoneData.phone}-brand`] = el)}
+                      ref={(el) => {
+                        chartRefs.current[`${phoneData.phone}-brand`] = el;
+                      }}
+
                       onClick={() =>
                         setModalChart(
                           <BarChart width={800} height={400} data={aggregateByKey(phoneData.sentiment_by_brand, 'Brand')}>
@@ -631,7 +634,10 @@ const handleDownloadPDF = async () => {
                   {phoneData.sentiment_by_product?.length > 0 && (
                     <div
                       className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                      ref={(el) => (chartRefs.current[`${phoneData.phone}-product`] = el)}
+                     ref={(el) => {
+                        chartRefs.current[`${phoneData.phone}-product`] = el;
+                      }}
+
                       onClick={() =>
                         setModalChart(
                           <BarChart
@@ -695,7 +701,7 @@ const handleDownloadPDF = async () => {
                       return (
                         <div
                           className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                          ref={(el) => (chartRefs.current[`${phoneData.phone}-rating`] = el)}
+                          ref={(el) => {chartRefs.current[`${phoneData.phone}-rating`] = el;}}
                           onClick={() =>
                             setModalChart(
                               <BarChart width={800} height={400} data={chartData}>
@@ -746,7 +752,7 @@ const handleDownloadPDF = async () => {
                       return (
                         <div
                           className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                          ref={(el) => (chartRefs.current[`${phoneData.phone}-verified`] = el)}
+                          ref={(el) => {chartRefs.current[`${phoneData.phone}-verified`] = el;}}
                           onClick={() =>
                             setModalChart(
                               <BarChart width={800} height={400} data={chartData}>
@@ -780,7 +786,7 @@ const handleDownloadPDF = async () => {
                   {phoneData.sentiment_by_age?.length > 0 && (
                     <div
                       className="cursor-pointer bg-[#181b23] p-4 rounded-lg border border-[#23243a] hover:border-blue-500 transition"
-                      ref={(el) => (chartRefs.current[`${phoneData.phone}-age`] = el)}
+                      ref={(el) => {chartRefs.current[`${phoneData.phone}-age`] = el;}}
                       onClick={() =>
                         setModalChart(
                           <BarChart width={800} height={400} data={aggregateByKey(phoneData.sentiment_by_age, 'Age')}>
